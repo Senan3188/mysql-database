@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql-database
+  namespace: argocd
+spec:
+  destination:
+    namespace: mysql-database
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: mysql-database
+    repoURL: "https://github.com/Senan3188/mysql-database.git"
+    targetRevision: master
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
